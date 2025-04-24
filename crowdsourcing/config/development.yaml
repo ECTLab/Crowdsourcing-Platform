@@ -1,0 +1,48 @@
+log_level: debug
+
+service:
+  service_proto_port: 8080
+  service_proto_host: localhost
+  service_name: crowdsourcing
+  
+aggregation:
+  print_percent_interval: 10
+  cluster_duration_threshold: 30
+  cluster_louvain_resolution: 1.5
+  max_osrm_table_locations: 50
+  osm_pbf_url: "set_in_env"
+  osm_pbf_version_url: set_in_env
+  osm_user: set_in_env
+  osm_pass: set_in_env
+  osm_dir_path: "./osm"
+  insecure_osm_download: false
+
+
+redis_crowdsourcing:
+  enabled: true
+  is_sentinel: false
+  addresses:
+    - "redis:6379"
+  sentinel_name: "crowdsourcing"
+  event_default_ttl_minutes: 45
+
+redis_annotation:
+  enabled: true
+  is_sentinel: false
+  addresses:
+    - "redis:6379"
+  sentinel_name: "annotator"
+  event_default_ttl_minutes: 360
+
+osrm_table:
+  address: http://osrm:5000
+  timeout_ms: 10000
+
+osrm_matching:
+  address: http://osrm:5000
+  timeout_ms: 10000
+
+online_report_visibility_over_http:
+  enabled: true
+  access_token: "12345678"
+  
