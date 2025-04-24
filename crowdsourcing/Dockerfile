@@ -1,0 +1,36 @@
+FROM golang:1.23.5 AS build_image
+
+WORKDIR /root/src
+
+RUN apt-get update --fix-missing
+RUN apt install -y protobuf-compiler build-essential
+
+
+
+RUN go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+RUN go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+
+COPY go.mod /root/src/go.mod
+COPY go.sum /root/src/go.sum
+RUN go mod download && go mod verify
+
+COPY ./ ./
+
+RUN go build -o /root/app/ ./cmd/main
+RUN go build -o /root/app/ ./cmd/aggregation
+
+FROM ubuntu:24.10 AS run_image
+
+WORKDIR /app
+COPY --from=build_image /root/app/main /app/
+COPY --from=build_image /root/app/aggregation /app/
+COPY ./config/*.y*ml /app/config/
+COPY ./entrypoint.sh /
+
+RUN chmod +x /entrypoint.sh
+RUN chmod +x /app/main
+RUN chmod +x /app/aggregation
+
+ENTRYPOINT ["/entrypoint.sh"]
+CMD [ "main" ]
+
