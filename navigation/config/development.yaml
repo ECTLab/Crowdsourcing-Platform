@@ -1,0 +1,47 @@
+log_level: debug
+
+service:
+  service_proto_port: 8080
+  service_proto_host: localhost
+  name: navigation
+
+redis_annotation:
+  enabled: true
+  is_sentinel: false
+  addresses:
+    - redis:6379
+  event_default_ttl_minutes: 45
+
+
+osrm_configs:
+  osrm_control:
+    address: http://osrm:5000
+    timeout_ms: 10000
+
+navigation_options:
+  ttl_seconds: 900
+  produce_navigation_response_on_joob_enabled: true
+  time_offset: 3
+
+tts:
+  service_host: text-to-speech
+  service_port_grpc_proto: 50051
+  timeout: 1000
+  provide_only_alt_announcement_address: false
+  produce_new_sentence_on_joob_enabled: true
+  alt_announcement_ttl: 5
+
+annotation:
+  traffic_enabled: true
+  events_enabled: true
+  online_reports_enabled: true
+  feasibility_confirmation:
+    enabled: true
+    maximum_cases_in_ride: 1
+    maximum_contributions: 5
+    new_data_fetch_interval_min: 1
+
+health:
+  port: 4444
+  host: 0.0.0.0
+
