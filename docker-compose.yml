@@ -1,0 +1,39 @@
+version: '3.9'
+
+services:
+  navigation:
+    build:
+      context: ./navigation
+    container_name: navigation
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+
+  crowdsourcing:
+    build:
+      context: ./crowdsourcing
+    container_name: crowdsourcing
+    restart: unless-stopped
+    ports:
+      - "8081:8080"
+
+  aggregation:
+    build:
+      context: ./crowdsourcing
+      dockerfile: Dockerfile.aggregation
+    container_name: aggregation
+    restart: always
+
+  osrm:
+    image: hamirho/osrm:trafficless
+    container_name: osrm
+    ports:
+      - "5000:5000"
+    restart: unless-stopped
+
+  redis:
+    image: redis:alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
