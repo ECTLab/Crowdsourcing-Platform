@@ -10,7 +10,6 @@ import (
 	"os"
 	"path"
 	"runtime"
-	"strings"
 	"sync"
 	"time"
 
@@ -41,8 +40,7 @@ func Download(config Config) {
 		downloaded = make(chan error)
 		defer close(downloaded)
 		useInsecureHttp()
-		version := getLatestVersions(config, &downloaded)
-		downloadOsmPbfFile(config, version, &downloaded)
+		downloadOsmPbfFile(config, &downloaded)
 		downloaded <- nil
 	})
 }
@@ -104,13 +102,12 @@ func getLatestVersions(config Config, downloaded *chan error) string {
 	return version
 }
 
-func downloadOsmPbfFile(config Config, version string, downloaded *chan error) {
-	PbfUrlWithVersion := strings.ReplaceAll(config.PbfUrl, "{VERSION}", version)
+func downloadOsmPbfFile(config Config, downloaded *chan error) {
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*60)
 	defer cancel()
 	client := http.DefaultClient
-	req, err := http.NewRequestWithContext(ctx, "GET", PbfUrlWithVersion, nil)
+	req, err := http.NewRequestWithContext(ctx, "GET", config.PbfUrl, nil)
 	if err != nil {
 		log.WithError(err).Errorf("osm: download: error creating pbf file download request")
 		*downloaded <- err
