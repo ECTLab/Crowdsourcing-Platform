@@ -1,0 +1,17 @@
+{
+  "name": "crowdsourcing-simulator",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "serve": "node index.js",
+    "serve-test-case-generator": "serve app-test-case-generator/"
+  },
+  "author": "MohammadJavad.Asadi@tapsi.cab",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "node-fetch": "^2.7.0",
+    "serve": "^14.2.3"
+  }
+}
