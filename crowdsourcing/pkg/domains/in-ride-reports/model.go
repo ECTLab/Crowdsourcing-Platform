@@ -4,13 +4,6 @@ package inridereports
 type InRideReportType string
 
 const (
-	UNSPECIFIED InRideReportType = "UNSPECIFIED"
-	DEAD_END   	InRideReportType = "DEAD_END"
-	NOT_EXISTS 	InRideReportType = "NOT_EXISTS"
-	OFF_ROAD   	InRideReportType = "OFF_ROAD"
-	WRONG_TURN 	InRideReportType = "WRONG_TURN"
-	NO_ENTRY   	InRideReportType = "NO_ENTRY"
-	NO_CAR     	InRideReportType = "NO_CAR"
 	POLICE     	InRideReportType = "POLICE"
 	ACCIDENT   	InRideReportType = "ACCIDENT"
 	FEASIBILITY	InRideReportType = "FEASIBILITY"
