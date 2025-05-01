@@ -6,16 +6,16 @@ services:
       context: ./navigation
     container_name: navigation
     restart: unless-stopped
-    ports:
-      - "8080:8080"
+    network_mode: host
 
   crowdsourcing:
     build:
       context: ./crowdsourcing
     container_name: crowdsourcing
     restart: unless-stopped
-    ports:
-      - "8081:8080"
+    network_mode: host
+    environment:
+      - SERVICE_SERVICE_PROTO_PORT=8001
 
   aggregation:
     build:
@@ -23,17 +23,33 @@ services:
       dockerfile: Dockerfile.aggregation
     container_name: aggregation
     restart: always
+    network_mode: host
+    environment:
+      - AGGREGATION_OSM_PBF_URL=http://localhost:80/iran.osm.pbf
+
+  auth:
+    build:
+      context: ./auth
+    container_name: auth
+    restart: unless-stopped
+    network_mode: host
+
 
   osrm:
     image: hamirho/osrm:trafficless
     container_name: osrm
-    ports:
-      - "5000:5000"
     restart: unless-stopped
+    network_mode: host
 
   redis:
-    image: redis:alpine
+    image: redis:7.2.8-alpine
     container_name: redis
-    ports:
-      - "6379:6379"
     restart: unless-stopped
+    network_mode: host
+
+  file-server:
+    image: nginx:alpine
+    volumes:
+      - ./map-viewer:/usr/share/nginx/html:ro
+    network_mode: host
+
