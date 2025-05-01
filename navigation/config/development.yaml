@@ -17,11 +17,13 @@ osrm_configs:
   osrm_control:
     address: http://osrm:5000
     timeout_ms: 10000
+  route:
+    url: route/v1/driving
 
 navigation_options:
   ttl_seconds: 900
-  produce_navigation_response_on_joob_enabled: true
   time_offset: 3
+  produce_navigation_response_on_joob_enabled: true
 
 tts:
   service_host: text-to-speech
