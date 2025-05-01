@@ -10,12 +10,12 @@ aggregation:
   cluster_duration_threshold: 30
   cluster_louvain_resolution: 1.5
   max_osrm_table_locations: 50
-  osm_pbf_url: "set_in_env"
+  osm_pbf_url: http://file-server:80/iran.osm.pbf
   osm_pbf_version_url: set_in_env
-  osm_user: set_in_env
-  osm_pass: set_in_env
+  osm_user:
+  osm_pass:
   osm_dir_path: "./osm"
-  insecure_osm_download: false
+  insecure_osm_download: true
 
 
 redis_crowdsourcing:
