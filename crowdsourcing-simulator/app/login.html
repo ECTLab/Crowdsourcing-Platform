@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Generate Token</title>
+</head>
+<body>
+  <form id="tokenForm">
+    <input type="text" id="nameInput" placeholder="Enter name" required>
+    <button type="submit">Submit</button>
+  </form>
+  <script>
+    document.getElementById('tokenForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const name = document.getElementById('nameInput').value;
+      try {
+        const response = await fetch('http://localhost:9000/generate-token', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name })
+        });
+        console.log(response)
+        if (!response.ok) throw new Error('HTTP error ' + response.status);
+        const data = await response.json();
+        localStorage.setItem('token', data.token);
+        window.location.href = '/';
+      } catch (err) {
+        console.error("this is the error"+err);
+      }
+    });
+  </script>
+</body>
+</html>
