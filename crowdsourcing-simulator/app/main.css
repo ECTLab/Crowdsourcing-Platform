@@ -1,0 +1,149 @@
+:root {
+    font-size: medium;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+#map {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: -1;
+}
+#btns {
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+    width: 6rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+#btns button {
+    margin: 0.35rem 0.5rem;
+    padding: auto;
+    height: 2rem;
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 120px;
+    color: black;
+    background-color: azure;
+}
+#btns button#logout {
+    width: 2rem;
+}
+#btns *:disabled {
+    background-color: darkgray;
+    border-color: darkgray;
+}
+
+.police {
+    border-radius: 100%;
+    width: 2rem;
+    height: 2rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: block;
+    border: none;
+    padding: 0;
+    z-index: 1;
+}
+
+.police.pointer {
+    cursor: pointer;
+}
+
+.police span {
+    display: block;
+    font-size: large;
+    margin-top: 2rem;
+}
+
+#login {
+    position: block;
+    width: 30rem;
+    margin: 10rem auto 0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+#login * {
+    text-align: center;
+}
+#login input {
+    margin: 0.35rem 0.5rem;
+    padding: auto;
+    height: 2rem;
+    width: 16rem;
+    border: 1px solid black;
+    border-radius: 120px;
+    color: black;
+    background-color: azure;
+}
+#login button {
+    margin: 0.35rem 4rem;
+    padding: auto;
+    height: 2rem;
+    width: 8rem;
+    border: 1px solid black;
+    border-radius: 120px;
+    color: black;
+    background-color: azure;
+}
+
+#login *:disabled {
+    background-color: darkgray;
+    border-color: darkgray;
+}
+
+#import-modal {
+    position: absolute;
+    left: 50vw;
+    top: 5vh;
+    width: 15rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+#import-modal[hidden], #import-modal[hidden] * {
+    display: none;
+}
+#import-modal button {
+    margin: 0.35rem 4rem;
+    padding: auto;
+    height: 2rem;
+    width: 8rem;
+    border: 1px solid black;
+    border-radius: 120px;
+    color: black;
+    background-color: azure;
+}
+#import-modal textarea {
+    resize: none;
+    margin: 0.35rem 4rem;
+    padding: 2rem;
+    height: 10rem;
+    width: 20rem;
+    border: 1px solid black;
+    border-radius: 10px;
+    color: black;
+    background-color: azure;
+}
