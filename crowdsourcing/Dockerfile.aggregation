@@ -30,6 +30,7 @@ COPY ./entrypoint.sh /
 RUN chmod +x /entrypoint.sh
 RUN chmod +x /app/main
 RUN chmod +x /app/aggregation
+RUN mkdir osm
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD [ "aggregation" ]

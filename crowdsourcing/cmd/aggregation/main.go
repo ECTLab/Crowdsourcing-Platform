@@ -20,7 +20,7 @@ func main() {
 	}
 
 	// wait for prometheus to scrape metrics
-	waitTime := 20
-	log.Infof("Job is done. waiting %d seconds for prometheus scrapes to happen", waitTime)
+	waitTime := 30
+	log.Infof("Job is done. running again in %d seconds", waitTime)
 	time.Sleep(time.Duration(waitTime * int(time.Second)))
 }
