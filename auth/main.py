@@ -4,7 +4,7 @@ from fastapi import FastAPI, Header, HTTPException, Request
 from pydantic import BaseModel
 import redis
 
-r = redis.Redis(host='redis', port=6379, db=0, decode_responses=True)
+r = redis.Redis(host='localhost', port=6379, db=0, decode_responses=True)
 
 app = FastAPI()
 

@@ -22,7 +22,7 @@ redis_crowdsourcing:
   enabled: true
   is_sentinel: false
   addresses:
-    - "redis:6379"
+    - "localhost:6379"
   sentinel_name: "crowdsourcing"
   event_default_ttl_minutes: 45
 
@@ -30,16 +30,16 @@ redis_annotation:
   enabled: true
   is_sentinel: false
   addresses:
-    - "redis:6379"
+    - "localhost:6379"
   sentinel_name: "annotator"
   event_default_ttl_minutes: 360
 
 osrm_table:
-  address: http://osrm:5000
+  address: http://localhost:5000
   timeout_ms: 10000
 
 osrm_matching:
-  address: http://osrm:5000
+  address: http://localhost:5000
   timeout_ms: 10000
 
 online_report_visibility_over_http:

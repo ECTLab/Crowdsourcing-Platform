@@ -9,13 +9,13 @@ redis_annotation:
   enabled: true
   is_sentinel: false
   addresses:
-    - redis:6379
+    - localhost:6379
   event_default_ttl_minutes: 45
 
 
 osrm_configs:
   osrm_control:
-    address: http://osrm:5000
+    address: http://localhost:5000
     timeout_ms: 10000
   route:
     url: route/v1/driving
