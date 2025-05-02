@@ -16,6 +16,20 @@ app.use(bodyParser.json())
 app.use("/", express.static(path.join(__dirname, "app")))
 app.use("/login", express.static(path.join(__dirname, "app", "login.html")))
 
+app.get("/auth", (req, res) => {
+  fetch("http://localhost:9000/generate-token", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: "demo",
+      })
+    })
+      .then(r => r.ok ? r.json() : Promise.reject(r))
+      .then(r => res.send(r))
+      .catch(err => res.status(err.status || 500).send(err))
+})
 app.post("/report", (req, res) => {
   const { token, report } = req.body
   fetch("http://localhost:8001/crowdsourcing/in-ride-report", {
