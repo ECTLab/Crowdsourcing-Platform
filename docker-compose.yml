@@ -53,3 +53,9 @@ services:
       - ./map-viewer:/usr/share/nginx/html:ro
     network_mode: host
 
+  crowdsourcing-ui:
+    build:
+      context: ./crowdsourcing-simulator
+    container_name: crowdsourcing-ui
+    restart: unless-stopped
+    network_mode: host
