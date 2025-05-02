@@ -28,6 +28,32 @@ function main() {
     map.on('click', action)
 }
 
+function initAuth() {
+    if (!localStorage.token) {
+        fetch(`${API_BASE}/auth`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+        })
+        .then(res => {
+            if (!res.ok) throw new Error("Failed to fetch token");
+            return res.json();
+        })
+        .then(data => {
+            if (data.token) {
+                localStorage.token = data.token;
+                console.log("Token acquired and saved to localStorage");
+            } else {
+                throw new Error("Token not found in response");
+            }
+        })
+        .catch(err => {
+            alert("Authentication failed");
+            console.error("Token generation failed:", err);
+        });
+    }
+}
+
+
 function App(map) {
     let reportBtn = document.getElementById('report')
     let routeBtn = document.getElementById('route')
@@ -387,14 +413,14 @@ function createPoliceMarker(LatLng, map) {
     let marker = new maplibregl.Marker({ element: img }).setLngLat(LatLng).addTo(map);
     return marker
 }
-
-async function initAuth() {
-    let token = localStorage.token
-
-    document.getElementById("logout").addEventListener('click', logout)
-
-    function logout() {
-        localStorage.token = ""
-        window.location.replace("/login");
-    }
-}
+//
+//async function initAuth() {
+//    let token = localStorage.token
+//
+//    document.getElementById("logout").addEventListener('click', logout)
+//
+//    function logout() {
+//        localStorage.token = ""
+//        window.location.replace("/login");
+//    }
+//}
