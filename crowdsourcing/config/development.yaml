@@ -8,7 +8,7 @@ service:
 aggregation:
   print_percent_interval: 10
   cluster_duration_threshold: 30
-  cluster_louvain_resolution: 1.5
+  cluster_louvain_resolution: 1
   max_osrm_table_locations: 50
   osm_pbf_url: http://file-server:80/iran.osm.pbf
   osm_pbf_version_url: set_in_env
